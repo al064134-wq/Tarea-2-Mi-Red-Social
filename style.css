@@ -13,6 +13,7 @@
     --color-card-background: #FFFFFF;
     --border-radius: 8px;
     --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --transition-speed: 0.3s; /* Velocidad para transiciones */
 }
 
 body {
@@ -23,11 +24,12 @@ body {
 a {
     text-decoration: none;
     color: var(--color-secondary);
-    transition: color 0.2s;
+    transition: all var(--transition-speed) ease;
 }
 
 a:hover {
     color: var(--color-primary);
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
 }
 
 h4 {
@@ -80,10 +82,17 @@ h4 {
     font-size: 0.85em;
     font-weight: bold;
     margin: 0 5px;
+    transition: all var(--transition-speed) ease;
 }
 
 .nav-item.active {
     background-color: #7a0000;
+}
+
+.nav-item:hover {
+    background-color: #7a0000;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .nav-separator {
@@ -101,33 +110,29 @@ h4 {
     gap: 20px;
 }
 
-@media (min-width: 1024px) {
-    .main-container {
-        display: grid;
-        grid-template-columns: 2fr 5.5fr 2.5fr; 
-        gap: 20px;
-    }
-    .feed-content {
-        order: 2;
-    }
-    .left-sidebar {
-        order: 1;
-    }
-    .right-sidebar {
-        order: 3;
-    }
-}
-
 .card {
     background-color: var(--color-card-background);
     padding: 15px;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
     margin-bottom: 20px;
+    transition: all var(--transition-speed) ease;
+}
+
+.card:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .sidebar-module {
     margin-bottom: 20px;
+}
+
+.post-creation-card {
+    border: 1px solid transparent;
+}
+
+.post-creation-card:focus-within {
+    border-color: var(--color-primary);
 }
 
 .post-creation-card textarea {
@@ -148,6 +153,14 @@ h4 {
     border-radius: 4px;
     font-weight: bold;
     display: inline-block;
+    font-size: 0.9em;
+    border: none;
+    transition: all var(--transition-speed) ease;
+}
+
+.post-button:hover {
+    background-color: var(--color-secondary);
+    color: white !important;
 }
 
 .post-card {
@@ -247,6 +260,7 @@ select {
     margin-bottom: 20px;
     border-radius: var(--border-radius);
     overflow: hidden;
+    border: 1px solid transparent;
 }
 
 .cover-photo {
@@ -297,16 +311,48 @@ select {
     border-radius: var(--border-radius);
     cursor: pointer;
     font-weight: bold;
-    transition: background-color 0.2s;
+    transition: all var(--transition-speed) ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .profile-actions button:hover {
-    background-color: #8a0000;
+    background-color: var(--color-secondary) !important;
+    color: white !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
 }
 
 .profile-content {
     display: grid;
     gap: 20px;
+}
+
+/* ------------------- ACCESIBILIDAD ------------------- */
+.nav-item:focus,
+.profile-actions a:focus button,
+.post-button:focus,
+a:focus {
+    outline: 2px solid #FFFFFF;
+    outline-offset: -3px;
+    box-shadow: 0 0 0 2px var(--color-secondary);
+}
+
+/* ------------------- MEDIA QUERIES ------------------- */
+@media (min-width: 1024px) {
+    .main-container {
+        display: grid;
+        grid-template-columns: 2fr 5.5fr 2.5fr; 
+        gap: 20px;
+    }
+    .feed-content {
+        order: 2;
+    }
+    .left-sidebar {
+        order: 1;
+    }
+    .right-sidebar {
+        order: 3;
+    }
 }
 
 @media (min-width: 768px) {
