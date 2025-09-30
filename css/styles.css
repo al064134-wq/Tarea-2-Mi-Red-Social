@@ -143,13 +143,24 @@ table[cellspacing="5"] td[bgcolor="#A00000"]:hover {
 
 /* Estilo para las tablas internas (contenido, sugerencias, etc.) que actúan como tarjetas */
 table[bgcolor="white"] {
-    border-radius: 12px; /* Bordes más redondeados */
-    /* *** CAMBIO CLAVE: Borde sutil para definir el cuadro *** */
+    border-radius: 12px; 
     border: 1px solid #E0E0E0 !important; 
-    /* *** CAMBIO CLAVE: Sombra más definida para que flote *** */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); 
     overflow: hidden;
-    margin-bottom: 20px; /* Asegurar espacio entre tarjetas apiladas */
+    margin-bottom: 20px; 
+    
+    /* *** CAMBIO CLAVE: Más padding a las tarjetas para separar el contenido de los bordes *** */
+    /* Aplicamos padding a la celda principal para crear el margen interior */
+    padding: 15px !important; 
+}
+
+/* Ajuste específico para el padding de las celdas TD dentro de las tablas principales */
+table[bgcolor="white"] td {
+    padding: 0 !important; /* Reseteamos padding de la celda, si fue aplicado por defecto */
+}
+/* Forzamos el padding en las tablas internas del feed */
+table[bgcolor="white"] table tr td {
+    padding: 5px 15px !important; /* Padding lateral interior para que el texto respire */
 }
 
 /* Campos de texto (Área de publicación) */
@@ -179,11 +190,12 @@ select {
 /* Contenedor del avatar, nombre y tiempo (para alineación) */
 table[border="0"][cellpadding="0"][cellspacing="0"] {
     margin-bottom: 10px;
+    width: 100% !important; /* Asegurar que la tabla del post ocupe todo el ancho disponible */
 }
 
-/* Avatar */
+/* Avatar - Aplicamos circularidad */
 img[width="40"][height="40"], img[width="30"][height="30"] {
-    border-radius: 50%; /* Avatares circulares */
+    border-radius: 50% !important; /* ¡Avatares circulares! */
     object-fit: cover;
     box-shadow: 0 0 0 2px #F0F2F5, 0 0 0 3px #CC000040; /* Anillo sutil */
 }
@@ -210,6 +222,7 @@ small {
 p font[face="Arial, sans-serif"] {
     margin: 15px 0;
     font-size: 1rem;
+    padding: 0 15px; /* Padding extra para el texto del post, si no está en una tabla */
 }
 
 /* Imagen de la publicación */
@@ -218,8 +231,11 @@ div[align="center"] img[width="95%"] {
     object-fit: cover;
     max-height: 450px;
     display: block;
-    margin: 15px auto !important; /* Más margen arriba y abajo */
+    margin: 15px auto !important; 
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    
+    /* *** CAMBIO CLAVE: Ajuste de imagen (Susan) *** */
+    object-position: top center; /* Enfoca la parte superior de la imagen (la cara) */
 }
 
 /* Línea divisoria dentro del post (suavizada) */
