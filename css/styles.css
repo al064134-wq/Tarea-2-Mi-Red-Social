@@ -1,51 +1,226 @@
-/* Reset básico */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Fuente Inter (moderna) como fallback */
+    font-family: 'Inter', 'Arial', sans-serif; 
 }
 
-/* Fuente general */
+/* El body solo define el fondo de página */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #F5F5F5;
-  color: #000;
+    background-color: #F0F2F5; /* Fondo gris muy suave */
+    color: #333333;
+    line-height: 1.5;
+    /* Aseguramos que la tipografía de los elementos de tabla se herede correctamente */
+    font-size: 14px; 
 }
 
-/* Encabezado principal */
+/* Configuración de accesibilidad para evitar el borde feo y usar el color de la marca */
+a:focus, button:focus, textarea:focus, select:focus {
+    outline: 2px solid #CC0000;
+    outline-offset: 2px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 2. ESTILOS GENERALES DE LA MARCA                                           */
+/* -------------------------------------------------------------------------- */
+
+/* Enlaces de color negro (para menú lateral, etc.) */
+a font[color="black"] {
+    color: #333333 !important;
+    text-decoration: none;
+    display: block; /* Para que ocupen su propia línea */
+    padding: 3px 0;
+    transition: color 0.2s;
+}
+a font[color="black"]:hover {
+    color: #CC0000 !important;
+}
+
+/* Títulos y Elementos de marca (H4) */
+h4, font[color="#CC0000"] h4 {
+    color: #CC0000 !important;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+/* Botones de acción y tags de color (Ej: "Agregar", "Sephiroth", "Salir") */
+span[bgcolor="#CC0000"] font[color="black"], 
+span[bgcolor="#DDDDDD"] font[color="#000000"] {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+}
+
+/* Botón principal (rojo) */
+span[bgcolor="#CC0000"] {
+    background-color: #CC0000 !important;
+    color: white !important;
+}
+
+/* Botón secundario (gris, como "Agregar") */
+span[bgcolor="#DDDDDD"] {
+    background-color: #EEEEEE !important;
+    color: #555 !important;
+    font-weight: normal;
+}
+span[bgcolor="#DDDDDD"]:hover {
+    opacity: 0.8;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 3. ENCABEZADO SUPERIOR (HEADER)                                            */
+/* -------------------------------------------------------------------------- */
+
+/* Tabla principal del encabezado (rojo) */
 table[bgcolor="#CC0000"] {
-  width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Asegurar que la imagen del logo no se deforme */
 table[bgcolor="#CC0000"] img {
-  max-width: 100%;
-  height: auto;
+    height: 40px !important;
+    width: auto;
 }
 
-/* Contenedor principal */
-#feed {
-  width: 95%;
-  margin: auto;
+/* Título principal */
+font[size="6"] b {
+    font-size: 1.8rem !important; /* Más grande y legible */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-/* Ajuste en móviles */
-@media (max-width: 768px) {
-  table {
-    width: 100% !important;
-    display: block;
-  }
+/* Menú de navegación INICIO | MI PERFIL */
+table[cellspacing="5"] td[bgcolor="#A00000"] {
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+table[cellspacing="5"] td[bgcolor="#A00000"]:hover {
+    background-color: #800000 !important;
+}
 
-  td {
-    display: block;
-    width: 100% !important;
-  }
+/* -------------------------------------------------------------------------- */
+/* 4. DISEÑO DE TARJETA (PARA ELEMENTOS INTERNOS DE CONTENIDO)                 */
+/* -------------------------------------------------------------------------- */
 
-  img {
-    max-width: 100%;
-    height: auto;
-  }
+/* Targetear las tablas internas (contenido, sugerencias, etc.) */
+table[bgcolor="white"], table[bordercolor="#DDDDDD"] {
+    border-radius: 8px; /* Bordes redondeados */
+    border: none !important; /* Eliminar el borde rígido si existe */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra suave de tarjeta */
+    overflow: hidden; /* Asegura que el contenido respete el border-radius */
+}
 
-  textarea {
+/* Para la tabla principal del perfil */
+#perfil-tony table {
+    max-width: 800px;
+    width: 95%;
+}
+
+/* Campos de texto y selectores (Área de publicación) */
+textarea, select {
     width: 100%;
-  }
+    padding: 10px;
+    border: 1px solid #DDD;
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 5. DISEÑO DE POSTS (PUBLICACIONES)                                         */
+/* -------------------------------------------------------------------------- */
+
+/* Cabecera del post (avatar, nombre, hora) - Usamos flex en el TR si es posible */
+.post-header tr {
+    display: flex;
+    align-items: center;
+}
+.post-header td[width="40"] {
+    padding-right: 10px;
+}
+.post-header td img {
+    border-radius: 50%; /* Avatares circulares */
+    object-fit: cover;
+}
+
+/* Imagen de la publicación */
+div[align="center"] img[width="95%"] {
+    border-radius: 6px;
+    object-fit: cover;
+    max-height: 400px; /* Limitar la altura de las imágenes */
+    display: block;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 6. RESPONSIVIDAD FORZADA (El reto de las tablas)                           */
+/* -------------------------------------------------------------------------- */
+
+@media (max-width: 800px) {
+    /* El contenedor del feed se ajusta */
+    #feed table[width="90%"] {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 600px) {
+    /* FORZAMOS EL APILAMIENTO DE COLUMNAS en el feed */
+    
+    /* La tabla principal del feed */
+    #feed table {
+        width: 100% !important;
+    }
+    
+    /* La fila principal debe comportarse como un contenedor de bloques apilados */
+    #feed table > tr {
+        display: block;
+        width: 100%;
+    }
+
+    /* Las 3 columnas (TDs) se convierten en bloques y ocupan todo el ancho */
+    #feed table > tr > td {
+        display: block;
+        width: 100% !important;
+        /* Reordenamos las columnas para móvil: Central (Feed) arriba, Laterales abajo */
+        padding: 10px; /* Asegurar espaciado */
+    }
+
+    /* Columna Central (Feed) - width="55%" */
+    #feed table > tr > td[width="55%"] {
+        order: 1; /* Sube al primer lugar */
+    }
+
+    /* Columna Izquierda (Sugerencias) - width="20%" */
+    #feed table > tr > td[width="20%"] {
+        order: 2; /* Se coloca debajo */
+    }
+
+    /* Columna Derecha (Navegación/Eventos) - width="25%" */
+    #feed table > tr > td[width="25%"] {
+        order: 3; /* Se coloca al final */
+    }
+    
+    /* El encabezado también se adapta */
+    table[bgcolor="#CC0000"] tr {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    table[bgcolor="#CC0000"] td {
+        width: 100% !important;
+        display: block;
+    }
+    
+    /* El menú de navegación en el header debe ir centrado */
+    table[cellspacing="5"] {
+        margin: 10px auto;
+        display: flex;
+        justify-content: center;
+    }
 }
