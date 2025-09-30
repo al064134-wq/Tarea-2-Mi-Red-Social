@@ -1,0 +1,51 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fuente general */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #F5F5F5;
+  color: #000;
+}
+
+/* Encabezado principal */
+table[bgcolor="#CC0000"] {
+  width: 100%;
+}
+
+table[bgcolor="#CC0000"] img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Contenedor principal */
+#feed {
+  width: 95%;
+  margin: auto;
+}
+
+/* Ajuste en móviles */
+@media (max-width: 768px) {
+  table {
+    width: 100% !important;
+    display: block;
+  }
+
+  td {
+    display: block;
+    width: 100% !important;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  textarea {
+    width: 100%;
+  }
+}
