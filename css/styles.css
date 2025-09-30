@@ -149,7 +149,7 @@ table[bgcolor="white"] {
     overflow: hidden;
     margin-bottom: 20px; 
     
-    /* *** CAMBIO CLAVE: Más padding a las tarjetas para separar el contenido de los bordes *** */
+    /* Más padding a las tarjetas para separar el contenido de los bordes */
     /* Aplicamos padding a la celda principal para crear el margen interior */
     padding: 15px !important; 
 }
@@ -189,8 +189,9 @@ select {
 
 /* Contenedor del avatar, nombre y tiempo (para alineación) */
 table[border="0"][cellpadding="0"][cellspacing="0"] {
-    margin-bottom: 10px;
-    width: 100% !important; /* Asegurar que la tabla del post ocupe todo el ancho disponible */
+    /* *** CAMBIO CLAVE: Reducimos el margen inferior a 5px (antes 10px) para acercar al texto *** */
+    margin-bottom: 5px; 
+    width: 100% !important; 
 }
 
 /* Avatar - Aplicamos circularidad */
@@ -220,9 +221,10 @@ small {
 
 /* Texto de la publicación */
 p font[face="Arial, sans-serif"] {
-    margin: 15px 0;
+    /* Mantenemos el margen del párrafo, pero lo hacemos respirar */
+    margin: 10px 0; /* Ligeramente más compacto */
     font-size: 1rem;
-    padding: 0 15px; /* Padding extra para el texto del post, si no está en una tabla */
+    padding: 0 15px; 
 }
 
 /* Imagen de la publicación */
@@ -234,8 +236,8 @@ div[align="center"] img[width="95%"] {
     margin: 15px auto !important; 
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     
-    /* *** CAMBIO CLAVE: Ajuste de imagen (Susan) *** */
-    object-position: top center; /* Enfoca la parte superior de la imagen (la cara) */
+    /* Ajuste de imagen (Susan) */
+    object-position: top center; 
 }
 
 /* Línea divisoria dentro del post (suavizada) */
@@ -313,16 +315,18 @@ hr[color="#EEEEEE"] {
         flex-direction: column;
         align-items: center;
         text-align: center;
+        padding: 10px 0; /* *** CAMBIO CLAVE: Más compacto en móvil *** */
     }
     
     table[bgcolor="#CC0000"] td {
         width: 100% !important;
         display: block;
+        padding: 5px 0 !important; /* Más compacto en móvil */
     }
     
     /* El menú de navegación en el header debe ir centrado */
     table[cellspacing="5"] {
-        margin: 10px auto;
+        margin: 5px auto; /* Más compacto */
         display: flex;
         justify-content: center;
     }
